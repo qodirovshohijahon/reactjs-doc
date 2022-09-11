@@ -1,15 +1,29 @@
 # React_Themes
 
-| React Tutorial     | People ||
-| :---        |    :----:   |          ---: |
-| Frontend      |  Esonboyev Muhammadaziz
-| Frontend   | Usmonjonov Mirafzal   
-| Frontend   | Diyorbek Jamolov  
-| Frontend   | Tursinboyev Shohjahon  
-| Frontend   | Holtorayev Asliddin  
+| React Tutorial     | People | |
+| :---        |    :----:   |          ---: 
+| Frontend      |  Esonboyev Muhammadaziz |  |
+| Frontend   | Usmonjonov Mirafzal  |
+| Frontend   | Diyorbek Jamolov |
+| Frontend   | Tursinboyev Shohjahon|  
+| Frontend   | Holtorayev Asliddin |
+
+<br> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+| Theme    | ||
+| :---        |    :----:   |          ---: 
+| Main Concepts    |  
+| Advanced Guides  | 
+| Api Reference   | 
+| Hooks|  
+| Testing   | 
+| Contributing   | 
+| FAQ| 
 
 
 
+<br>
+<h1>Theme Childs</h1>
 
 <br>
 <br>
