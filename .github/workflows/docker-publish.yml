@@ -60,7 +60,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.REGISTRY }}/qodirovshohijahon/reactjs-doc
           flavor: latest=true
           tags: |
             type=ref,event=branch
