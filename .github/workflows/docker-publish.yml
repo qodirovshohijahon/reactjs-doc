@@ -56,7 +56,8 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          file: ${{ inputs.docker_filepath }}
+          context: .
+          # file: ${{ inputs.docker_filepath }}
           tags: ${{ env.REGISTRY }}/${{ inputs.docker_imagename }}:${{github.run_number}}
 
       - name: Image digest
