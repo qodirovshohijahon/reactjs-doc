@@ -58,7 +58,7 @@ jobs:
           push: true
           context: .
           # file: ${{ inputs.docker_filepath }}
-          tags: ${{ env.REGISTRY }}/${{ inputs.docker_imagename }}:${{github.run_number}}
+          tags: ${{ env.REGISTRY }}/qodirovshohijahon/reactjs-doc:${{github.run_number}}
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
