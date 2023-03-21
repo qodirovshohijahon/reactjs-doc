@@ -37,14 +37,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Install the cosign tool except on PR
-      # https://github.com/sigstore/cosign-installer
-      - name: Install cosign
-        if: github.event_name != 'pull_request'
-        uses: sigstore/cosign-installer@f3c664df7af409cb4873aa5068053ba9d61a57b6 #v2.6.0
+      - name: Download artifact
+        uses: actions/download-artifact@v3
         with:
-          cosign-release: 'v1.13.1'
-
+          name: ${{ inputs.download_artifact_name }}
 
       # Login against a Docker registry except on PR
       # https://github.com/docker/login-action
@@ -56,25 +52,12 @@ jobs:
           username: ${{ secrets.REGISTRY_USER }}
           password: ${{ secrets.REGISTRY_TOKEN }}
 
-      - name: Docker meta
-        id: meta
-        uses: docker/metadata-action@v4
+      - name: Build & Push
+        uses: docker/build-push-action@v2
         with:
-          images: ${{ env.REGISTRY }}/qodirovshohijahon/reactjs-doc
-          flavor: latest=true
-          tags: |
-            type=ref,event=branch
-            type=ref,event=pr
-            type=semver,pattern={{version}}
-
-      - name: Build and push
-        uses: docker/build-push-action@v3
-        with:
-          context: .
-          # file: docker/dockerfile/hello-world/Dockerfile
-          push: ${{ github.ref_type == 'tag' }}
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          push: true
+          file: ${{ inputs.docker_filepath }}
+          tags: ${{ env.REGISTRY }}/${{ inputs.docker_imagename }}:${{github.run_number}}
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
