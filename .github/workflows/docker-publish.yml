@@ -57,9 +57,10 @@ jobs:
         with:
           push: true
           context: .
-          # file: ${{ inputs.docker_filepath }}
-          tag: sha-${{GITHUB_SHA::7}}
-          # tags: ${{ env.REGISTRY }}/qodirovshohijahon/reactjs-doc:${{github.run_number}}
+          tags: ${{ env.REGISTRY }}/qodirovshohijahon/reactjs-doc:latest
+          # tags: user/app:latest
+          secrets: |
+            GIT_AUTH_TOKEN=${{ secrets.REGISTRY_TOKEN }}
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
