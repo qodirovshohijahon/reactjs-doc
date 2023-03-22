@@ -34,19 +34,18 @@ jobs:
       id-token: write
 
     steps:
-      - name: Checkout repository
+      -
+        name: Checkout
         uses: actions/checkout@v3
-
-      - name: Download artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: ${{ inputs.download_artifact_name }}
-
-      # Login against a Docker registry except on PR
-      # https://github.com/docker/login-action
-      - name: Log into registry ${{ env.REGISTRY }}
-        if: github.event_name != 'pull_request'
-        uses: docker/login-action@28218f9b04b4f3f62068d7b6ce6ca5b26e35336c
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      -
+        name: Log into registry ${{ env.REGISTRY }}
+        uses: docker/login-action@v2
         with:
           registry: ${{ secrets.REGISTRY }}
           username: ${{ secrets.REGISTRY_USER }}
@@ -59,8 +58,8 @@ jobs:
           context: .
           tags: ${{ env.REGISTRY }}/qodirovshohijahon/reactjs-doc:latest
           # tags: user/app:latest
-          secrets: |
-            GIT_AUTH_TOKEN=${{ secrets.REGISTRY_TOKEN }}
+          # secrets: |
+          #   GIT_AUTH_TOKEN=${{ secrets.REGISTRY_TOKEN }}
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
