@@ -58,7 +58,7 @@ jobs:
           push: true
           context: .
           # file: ${{ inputs.docker_filepath }}
-          tag: ${{GITHUB_SHA}}
+          tag: ${{ GITHUB_SHA }}
           # tags: ${{ env.REGISTRY }}/qodirovshohijahon/reactjs-doc:${{github.run_number}}
 
       - name: Image digest
